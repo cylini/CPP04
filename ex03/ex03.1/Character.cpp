@@ -208,7 +208,7 @@ void Character::unequip(int idx)
 	if (idx >= 0 && idx < 4 && _inventory[idx])
 	{
 		std::cout << _name << " unequipped " << _inventory[idx]->getType() << std::endl;
-		delete _inventory[idx];
+		// delete _inventory[idx];
 		_inventory[idx] = 0;
 	}
 }
