@@ -15,7 +15,6 @@ public:
 
 	void setIdea(int index, const std::string &idea);
 	std::string getIdea(int index) const;
-	// void printIdeas() const;
-	// void printIdea(int index) const;
+
 };
 #endif

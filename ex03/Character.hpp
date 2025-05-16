@@ -15,7 +15,7 @@ public:
 	Character(const std::string name);
 	Character(Character const &src);
 	Character &operator=(Character const &copy);
-	/* virtual */ ~Character();
+	~Character();
 
 	std::string const &getName() const;
 	void equip(AMateria *m);

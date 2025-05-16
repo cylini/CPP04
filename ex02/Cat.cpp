@@ -21,15 +21,14 @@ Cat &Cat::operator=(const Cat &copy)
 {
 	if (this != &copy)
 	{
-		_type = copy._type;
-		delete _brain;
-		_brain = new Brain(*copy._brain);
+		this->_type = copy._type;
+		this->_brain = new Brain(*copy._brain);
 	}
 	return *this;
 }
 void Cat::makeSound() const
 {
-	std::cout << "Cat " << _type << " makes sound : Meow !" << std::endl;
+	std::cout << this->_type << " makes sound : Meow !" << std::endl;
 }
 Brain &Cat::getBrain() const
 {

@@ -10,10 +10,10 @@ public:
 	Cure();
 	Cure(Cure const &src);
 	Cure &operator=(Cure const &copy);
-	/* virtual */ ~Cure();
+	~Cure();
 
-	/* virtual */ AMateria *clone() const;
-	/* virtual */ void use(ICharacter &target);
+	AMateria *clone() const;
+	void use(ICharacter &target);
 };
 
 #endif

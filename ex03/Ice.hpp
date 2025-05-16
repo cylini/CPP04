@@ -11,10 +11,10 @@ public:
 	Ice();
 	Ice(Ice const &src);
 	Ice &operator=(Ice const &copy);
-	/* virtual */ ~Ice();
+	~Ice();
 
-	/* virtual */ AMateria *clone() const;
-	/* virtual */ void use(ICharacter &target);
+	AMateria *clone() const;
+	void use(ICharacter &target);
 };
 
 #endif

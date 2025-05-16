@@ -1,4 +1,4 @@
-NAME = materia
+NAME = interface
 SRC = main.cpp AMateria.cpp Character.cpp Ice.cpp Cure.cpp MateriaSource.cpp
 INCLUDE = AMateria.hpp Character.hpp Ice.hpp Cure.hpp MateriaSource.hpp ICharacter.hpp IMateriaSource.hpp
 OBJDIR = obj

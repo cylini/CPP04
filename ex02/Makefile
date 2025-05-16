@@ -1,4 +1,4 @@
-NAME = AnimalBrain
+NAME = abstraite
 SRC = main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp
 INCLUDE = AAnimal.hpp Dog.hpp Cat.hpp Brain.hpp
 OBJDIR = obj

@@ -5,108 +5,145 @@
 
 int main()
 {
-	const int N = 4; // Taille du tableau d'animaux (moitié chiens, moitié chats)
-	Animal *animals[N];
+	std::cout << "\n🐾 === TESTS DES ANIMAUX ===\n";
+	const int size = 6;
+	Animal *animals[size];
 
-	// Remplir moitié Dog, moitié Cat
-	for (int i = 0; i < N; ++i)
-	{
-		if (i < N / 2)
-			animals[i] = new Dog();
-		else
-			animals[i] = new Cat();
-	}
+	std::cout << "📦 Création de " << size / 2 << " Dogs et " << size / 2 << " Cats\n";
+	for (int i = 0; i < size / 2; ++i)
+		animals[i] = new Dog();
+	for (int i = size / 2; i < size; ++i)
+		animals[i] = new Cat();
 
-	std::cout << "\n--- Deleting Animals ---\n"
-			  << std::endl;
+	std::cout << "\n🔊 Sons des animaux :\n";
+	for (int i = 0; i < size; ++i)
+		animals[i]->makeSound();
 
-	// Supprimer tous les animaux
-	for (int i = 0; i < N; ++i)
-	{
+	std::cout << "\n🗑️ Suppression des animaux :\n";
+	for (int i = 0; i < size; ++i)
 		delete animals[i];
-	}
 
-	std::cout << "\n--- Testing Deep Copy ---\n"
-			  << std::endl;
+	std::cout << "\n🧠 === TEST DE COPIE PROFONDE (DOG) ===\n";
+	Dog *dog = new Dog();
 
-	Dog basic;
-	basic.getBrain()->setIdea(0, "Chase the cat!");
+	std::cout << "\n📝 Ajout d'idées : \"EAT\" et \"SLEEP\"\n";
+	dog->getBrain().setIdea(0, "EAT");
+	dog->getBrain().setIdea(1, "SLEEP");
 
-	Dog copy = basic; // Appelle le constructeur par copie
-	std::cout << "Original Dog idea: " << basic.getBrain()->getIdea(0) << std::endl;
-	std::cout << "Copied Dog idea:   " << copy.getBrain()->getIdea(0) << std::endl;
+	std::cout << "Dog idea[0]: " << dog->getBrain().getIdea(0) << "\n";
+	std::cout << "Dog idea[1]: " << dog->getBrain().getIdea(1) << "\n";
 
-	basic.getBrain()->setIdea(0, "Bark at the mailman!");
+	std::cout << "\n📋 Création de dog2 par copie de dog\n";
+	Dog *dog2 = new Dog(*dog);
 
-	std::cout << "\nAfter modifying original's brain:\n";
-	std::cout << "Original Dog idea: " << basic.getBrain()->getIdea(0) << std::endl;
-	std::cout << "Copied Dog idea:   " << copy.getBrain()->getIdea(0) << std::endl;
+	std::cout << "❌ Suppression de dog original\n";
+	delete dog;
 
+	std::cout << "\n🔊 dog2 fait un son : ";
+	dog2->makeSound();
+
+	std::cout << "💡 dog2 idea[0]: " << dog2->getBrain().getIdea(0) << "\n";
+	std::cout << "💡 dog2 idea[1]: " << dog2->getBrain().getIdea(1) << "\n";
+
+	std::cout << "\n🗑️ Suppression de dog2\n";
+	delete dog2;
+
+	std::cout << "\n✅ Fin du test sans fuite mémoire.\n";
 	return 0;
 }
 // int main()
 // {
-// 	// Wrong Animal
-// 	// Wrong Cat
-// 	std::cout << "\n\n===== Wrong Animals =====" << std::endl;
-// 	std::cout << "\n-------- constructors --------" << std::endl;
-// 	const WrongAnimal *wronganimal = new WrongAnimal();
-// 	const WrongAnimal *wrongcat = new WrongCat();
-// 	std::cout << "\n-------- print type --------" << std::endl;
-// 	std::cout << "Wrong Animal type: " << wronganimal->getType() << " " << std::endl;
-// 	std::cout << "Wrong Cat type: " << wrongcat->getType() << " " << std::endl;
-// 	std::cout << "\n-------- make sounds --------" << std::endl;
-// 	wronganimal->makeSound();
-// 	wrongcat->makeSound();
-// 	std::cout << "\n-------- cleanup --------" << std::endl;
-// 	delete wronganimal;
-// 	delete wrongcat;
-
-// 	std::cout << "\n\n===== Animals =====" << std::endl;
-// 	std::cout << "\n-------- constructors --------" << std::endl;
-// 	const Animal *meta = new Animal();
-// 	const Animal *j = new Dog();
-// 	const Animal *i = new Cat();
-// 	std::cout << "\n-------- print type --------" << std::endl;
-// 	std::cout << j->getType() << " " << std::endl;
-// 	std::cout << i->getType() << " " << std::endl;
-// 	std::cout <<"\n-------- make sounds --------" << std::endl;
-// 	i->makeSound(); // will output the cat sound!
-// 	j->makeSound();
-// 	meta->makeSound();
-// 	std::cout << "\n-------- cleanup --------" << std::endl;
-// 	delete meta;
-// 	delete j;
-// 	delete i;
-
-// 	std::cout << "\n-------- other tests --------" << std::endl;
-
-// 	Animal *animal = new Animal();
-// 	animal->makeSound();
-// 	std::cout << "Animal type: " << animal->getType() << std::endl;
-// 	delete animal;
-// 	std::cout << "------------------------" << std::endl;
-
-// 	Animal *animal1 = new Cat();
-// 	animal->makeSound();
-// 	std::cout << "Animal type: " << animal->getType() << std::endl;
-// 	delete animal1;
-// 	std::cout << "------------------------" << std::endl;
-// 	Animal *animal2 = new Dog();
-// 	animal2->makeSound();
-// 	std::cout << "Animal type: " << animal2->getType() << std::endl;
-// 	delete animal2;
-// 	std::cout << "------------------------" << std::endl;
+// 	std::cout << "Animal tests:" << std::endl;
+// 	int size = 6;
+// 	Animal *animals[size];
+// 	for (int i = 0; i < size / 2; ++i)
+// 		animals[i] = new Dog();
+// 	for (int i = size / 2; i < size; ++i)
+// 		animals[i] = new Cat();
+// 	for (int i = 0; i < size; ++i)
+// 		animals[i]->makeSound();
+// 	for (int i = 0; i < size; ++i)
+// 		delete (animals[i]);
 
 // 	Dog *dog = new Dog();
-// 	dog->makeSound();
-// 	std::cout << "Dog type: " << dog->getType() << std::endl;
-// 	delete dog;
+// 	std::cout << "Create ideas EAT and SLEEP for dog" << std::endl;
+// 	dog->getBrain().setIdea(0, "EAT");
+// 	dog->getBrain().setIdea(1, "SLEEP");
+// 	std::cout << "Dog idea[0]: " << dog->getBrain().getIdea(0) << std::endl;
+// 	std::cout << "Dog idea[1]: " << dog->getBrain().getIdea(1) << std::endl;
+// 	std::cout << "Create dog2" << std::endl;
+// 	std::cout << "Delete dog" << std::endl;
+// 	Dog *dog2 = new Dog(*dog);
+// 	delete (dog);
+// 	dog2->makeSound();
+// 	std::cout << "Dog2 idea[0]: " << dog2->getBrain().getIdea(0) << std::endl;
+// 	std::cout << "Dog2 idea[1]: " << dog2->getBrain().getIdea(1) << std::endl;
+// 	delete (dog2);
 
-// 	Cat *cat = new Cat();
-// 	cat->makeSound();
-// 	std::cout << "Cat type: " << cat->getType() << std::endl;
-// 	delete cat;
+// 	return 0;
+// }
+
+// int main()
+// {
+
+// 	std::cout << std::endl;
+// 	std::cout << "-----------------------------------------------------" << std::endl;
+// 	std::cout << std::endl;
+
+// 	std::cout << "Deep copy and assignments tests:" << std::endl;
+// 	std::cout << std::endl;
+
+// 	Dog basic;
+// 	{
+// 		Dog tmp = basic;
+// 	}
+
+// 	std::cout << std::endl;
+// 	std::cout << "-----------------------------------------------------" << std::endl;
+// 	std::cout << std::endl;
+
+// 	std::cout << "Array tests:" << std::endl;
+// 	std::cout << std::endl;
+
+// 	Animal *animals[4];
+
+// 	std::cout << std::endl;
+
+// 	animals[0] = new Dog();
+// 	animals[1] = new Cat();
+// 	animals[2] = new Dog();
+// 	animals[3] = new Cat();
+
+// 	std::cout << std::endl;
+
+// 	for (int i = 0; i < 4; i++)
+// 	{
+// 		std::cout << animals[i]->getType() << " makes a sound: ";
+// 		animals[i]->makeSound();
+// 	}
+
+// 	std::cout << std::endl;
+
+// 	for (int i = 0; i < 4; i++)
+// 		delete animals[i];
+
+// 	return 0;
+// }
+
+// int main()
+// {
+// 	Cat original;
+// 	original.getBrain().setIdea(0, "Manger du poisson");
+// 	Cat copy = original;
+
+// 	std::cout << "Original idea[0]: " << original.getBrain().getIdea(0) << std::endl;
+// 	std::cout << "Copy idea[0]: " << copy.getBrain().getIdea(0) << std::endl;
+
+// 	// Modifier une idée dans l'original
+// 	original.getBrain().setIdea(0, "Dormir");
+
+// 	std::cout << "Original idea[0] (modifiée): " << original.getBrain().getIdea(0) << std::endl;
+// 	std::cout << "Copy idea[0] (doit rester inchangée): " << copy.getBrain().getIdea(0) << std::endl;
 
 // 	return 0;
 // }

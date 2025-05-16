@@ -1,51 +1,47 @@
 #include "AMateria.hpp"
-// #include "ICharacter.hpp"
 
-AMateria::AMateria() : _type("type") {}
-
-AMateria::AMateria(std::string const &type) : _type(type) {}
-
-AMateria::AMateria(AMateria const &src) { *this = src; }
-
-AMateria &AMateria::operator=(AMateria const &copy)
+AMateria::AMateria() : _type("AMateria default")//constructor par défaut
 {
-	if (this != &copy)
-		_type = copy._type;
+	std::cout << "🥛 Default AMateria created" << std::endl;
+}
+
+AMateria::AMateria(const std::string &type) : _type(type)//constructor avec type
+{
+	std::cout << "🥛 AMateria of type '" << _type << "' constructed" << std::endl;
+}
+
+AMateria::AMateria(const AMateria &other) : _type(other._type)//constructor de copie
+{
+	std::cout << "🥛 AMateria copy-constructed with type '" << _type << "'" << std::endl;
+}
+
+// Assignment
+AMateria &AMateria::operator=(const AMateria &other)//opérateur d'assignation
+{
+	if (this != &other)
+	{
+		_type = other._type;
+	}
+	std::cout << "🥛 AMateria assigned with type '" << _type << "'" << std::endl;
 	return *this;
 }
 
-AMateria::~AMateria() {}
+// Destructor
+AMateria::~AMateria()
+{
+	std::cout << "🥛 AMateria of type '" << _type << "' destroyed" << std::endl;
+}
 
-std::string const AMateria::getType() const { return _type; }
+// Getter
+const std::string &AMateria::getType() const//getter pour le type
+{
+	return _type;
+}
 
+// Virtual method
 void AMateria::use(ICharacter &target)
 {
 	(void)target;
+	std::cout << "🥛 AMateria base use() called (no effect)" << std::endl;
 }
 
-// AMateria::AMateria(const std::string const &type) : _type(type)
-// {
-// 	std::cout << "AMateria " << this->_type << " constructor called" << std::endl;
-// }
-// AMateria::AMateria(AMateria const &src)
-// {
-// 	std::cout << "AMateria " << this->_type << " copy constructor called" << std::endl;
-// 	*this = src;
-// }
-// AMateria &AMateria::operator=(AMateria const &copy)
-// {
-// 	std::cout << "AMateria " << this->_type << " copy assignment operator called" << std::endl;
-// 	if (this != &copy)
-// 		this->_type = copy._type;
-// 	return *this;
-// }
-// AMateria::~AMateria()
-// {
-// 	std::cout << "AMateria " << this->_type << " destructor called" << std::endl;
-// }
-// std::string const AMateria::getType() const { return this->_type; }
-
-// void AMateria::use(ICharacter &target)
-// {
-// 	std::cout << "AMateria " << this->_type << " used on " << target.getName() << std::endl;
-// }

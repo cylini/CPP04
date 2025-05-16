@@ -8,8 +8,7 @@ Cat::Cat()
 Cat::Cat(const Cat &copy) : Animal(copy)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
-	*this = copy;
-	// _type = copy._type;
+	this->_type = copy._type;
 }
 Cat::~Cat()
 {
@@ -19,11 +18,11 @@ Cat &Cat::operator=(const Cat &copy)
 {
 	if (this != &copy)
 	{
-		_type = copy._type;
+		this->_type = copy._type;
 	}
 	return *this;
 }
 void Cat::makeSound() const
 {
-	std::cout << "Cat " << _type << " makes sound : Meow !" << std::endl;
+	std::cout << this->_type << " makes sound : Meow !" << std::endl;
 }

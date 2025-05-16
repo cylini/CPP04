@@ -1,22 +1,22 @@
 #include "Animal.hpp"
 
-Animal::Animal() : _type("Animal")
+Animal::Animal() : _type("Default Animal")
 {
-	std::cout << "Animal default constructor called named " << _type << std::endl;
+	std::cout << "Animal default constructor called and named " << _type << std::endl;
 }
 Animal::Animal(const Animal &copy) : _type(copy._type)
 {
-	std::cout << "Animal copy constructor called named" << std::endl;
+	std::cout << "Animal copy constructor called and named" << std::endl;
 }
 Animal::~Animal()
 {
-	std::cout << "Animal destructor called named " << std::endl;
+	std::cout << "Animal destructor called " << std::endl;
 }
 Animal &Animal::operator=(const Animal &copy)
 {
 	if (this != &copy)
 	{
-		_type = copy._type;
+		this->_type = copy._type;
 	}
 	return *this;
 }
